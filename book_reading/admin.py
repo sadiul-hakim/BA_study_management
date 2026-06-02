@@ -27,7 +27,7 @@ class BookAdmin(admin.ModelAdmin):
 
 @admin.register(ReadingProgress)
 class ReadingProgressAdmin(admin.ModelAdmin):
-    list_display = ("chapter", "model", "current_page", "reading_model",
+    list_display = ("book", "chapter", "model", "current_page", "reading_model",
                     "is_completed", "finish_around")
     list_filter = ("is_completed",)
 
