@@ -53,6 +53,7 @@ class ReadingProgress(models.Model):
     reading_model = models.BooleanField(default=False)
 
     updated_at = models.DateTimeField(auto_now=True)
+    finish_around = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.chapter} - page {self.current_page}"
@@ -65,3 +66,21 @@ class Exam(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Improve(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.course} - {self.book}"
+
+
+class ReadingPlan(models.Model):
+    course = models.ForeignKey(Course, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    note = models.TextField(blank=True)
+    start_around = models.DateField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.course} - {self.book}"
