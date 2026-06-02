@@ -79,6 +79,8 @@ class Improve(models.Model):
 class ReadingPlan(models.Model):
     course = models.ForeignKey(Course, on_delete=models.CASCADE)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, null=True,
+                                blank=True)
     note = models.TextField(blank=True)
     start_around = models.DateField(null=True, blank=True)
 
