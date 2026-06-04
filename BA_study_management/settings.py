@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'book_reading',
-    'exam_management'
+    'exam_management',
+    'literature'
 ]
 
 MIDDLEWARE = [
