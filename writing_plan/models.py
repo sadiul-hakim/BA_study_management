@@ -6,6 +6,17 @@ from book_reading.models import Book, Chapter
 
 
 class WritingPlan(models.Model):
+    LOW = 1
+    MEDIUM = 2
+    HIGH = 3
+
+    PRIORITY_CHOICES = [
+        (LOW, "Low"),
+        (MEDIUM, "Medium"),
+        (HIGH, "High"),
+    ]
+
+    priority = models.IntegerField(choices=PRIORITY_CHOICES, default=MEDIUM)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, null=True,
                                 blank=True)

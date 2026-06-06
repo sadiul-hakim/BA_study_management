@@ -39,13 +39,15 @@ class CourseAdmin(admin.ModelAdmin):
 
 @admin.register(ReadingPlan)
 class ReadingPlanAdmin(admin.ModelAdmin):
-    list_display = ("course", "book", "chapter", "start_around", "note")
+    list_display = ("course", "book", "chapter",
+                    "start_around", "priority", "order", "note")
     list_filter = ("course", "book")
     search_fields = ("course__name", "book__title", "note")
 
 
 @admin.register(Revise)
 class ReviseAdmin(admin.ModelAdmin):
-    list_display = ("book", "chapter", "possible_date", "note")
+    list_display = ("book", "chapter", "possible_date",
+                    "priority",  "order", "note")
     list_filter = ("book",)
     search_fields = ("book__title", "note")

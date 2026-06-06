@@ -6,6 +6,6 @@ from .models import WritingPlan
 
 @admin.register(WritingPlan)
 class WritingPlanAdmin(admin.ModelAdmin):
-    list_display = ("book", "chapter", "possible_date", "note")
+    list_display = ("book", "chapter", "possible_date", "priority", "note")
     list_filter = ("book",)
     search_fields = ("book__title", "note")
