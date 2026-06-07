@@ -35,7 +35,7 @@ class ReadingProgressAdmin(admin.ModelAdmin):
 @admin.register(OtherStudyProgress)
 class OtherStudyProgressAdmin(admin.ModelAdmin):
     list_display = ("topic_name", "note")
-    list_filter = ("topic_name",)
+    search_fields = ("topic_name",)
 
 
 @admin.register(Course)
