@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Book, Chapter, ReadingProgress, Course, ReadingPlan, Revise
+from .models import Book, Chapter, ReadingProgress, Course, ReadingPlan, Revise, OtherStudyProgress
 
 # Register your models here.
 
@@ -30,6 +30,12 @@ class ReadingProgressAdmin(admin.ModelAdmin):
     list_display = ("book", "chapter", "model", "current_page", "reading_model",
                     "is_completed", "finish_around")
     list_filter = ("is_completed",)
+
+
+@admin.register(OtherStudyProgress)
+class OtherStudyProgressAdmin(admin.ModelAdmin):
+    list_display = ("topic_name", "note")
+    list_filter = ("topic_name",)
 
 
 @admin.register(Course)

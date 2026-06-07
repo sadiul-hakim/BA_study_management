@@ -59,6 +59,14 @@ class ReadingProgress(models.Model):
         return f"{self.chapter} - page {self.current_page}"
 
 
+class OtherStudyProgress(models.Model):
+    topic_name = models.CharField(max_length=200, null=False, blank=False)
+    note = models.TextField()
+
+    def __str__(self):
+        return f"{self.topic_name}"
+
+
 class ReadingPlan(models.Model):
     LOW = 1
     MEDIUM = 2
