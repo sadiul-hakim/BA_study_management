@@ -48,8 +48,9 @@ class ReadingProgress(models.Model):
                                 blank=True)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     current_page = models.IntegerField(default=0)
-    model = models.CharField(max_length=100)
+    model = models.CharField(max_length=100, default=0)
     is_completed = models.BooleanField(default=False)
+    is_postponed = models.BooleanField(default=False)
     reading_model = models.BooleanField(default=False)
 
     updated_at = models.DateTimeField(auto_now=True)
