@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'book_reading',
     'writing_plan',
     'exam_management',
-    'literature'
+    'literature',
+    'document'
 ]
 
 MIDDLEWARE = [
@@ -122,3 +123,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
