@@ -52,7 +52,8 @@ JAZZMIN_SETTINGS = {
     "icons": {
         "auth.user": "fas fa-user",
         "book_reading.book": "fas fa-book-open",
-    }
+    },
+    "custom_css": "css/admin.css",
 }
 
 MIDDLEWARE = [
