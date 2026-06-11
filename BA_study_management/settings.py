@@ -48,6 +48,11 @@ INSTALLED_APPS = [
 
 JAZZMIN_SETTINGS = {
     "show_theme_chooser": True,
+    "welcome_sign": "Welcome to Study Management Dashboard",
+    "icons": {
+        "auth.user": "fas fa-user",
+        "book_reading.book": "fas fa-book-open",
+    }
 }
 
 MIDDLEWARE = [
