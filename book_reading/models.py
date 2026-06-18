@@ -23,7 +23,8 @@ class Book(models.Model):
     ]
 
     course = models.ForeignKey(
-        Course, on_delete=models.CASCADE, related_name="books")
+        Course, on_delete=models.CASCADE, related_name="books", null=True,
+        blank=True)
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255, blank=True)
     priority = models.IntegerField(choices=PRIORITY_CHOICES, default=MEDIUM)

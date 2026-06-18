@@ -1,7 +1,14 @@
 from django.contrib import admin
-from .models import Notes
+from .models import Notes, StudyNote
 
 # Register your models here.
+
+
+@admin.register(StudyNote)
+class StudyNoteAdmin(admin.ModelAdmin):
+    list_display = ("book", "page", "note")
+    search_fields = ("book", "note",)
+    list_filter = ("book",)
 
 
 @admin.register(Notes)

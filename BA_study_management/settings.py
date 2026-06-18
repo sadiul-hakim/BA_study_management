@@ -61,6 +61,7 @@ JAZZMIN_SETTINGS = {
         "exam_management.exam": "fa fa-puzzle-piece",
         "exam_management.improve": "fa-solid fa-arrow-up-right-dots",
         "general.notes": "fa fa-sticky-note",
+        "general.studyNote": "fa fa-sticky-note",
         "writing_plan.writingPlan": "fa fa-edit",
         "literature.author": "fa fa-address-book",
         "literature.genre": "fa fa-navicon",
