@@ -13,8 +13,8 @@ class StudyNoteAdmin(admin.ModelAdmin):
 
 @admin.register(Notes)
 class NotesAdmin(admin.ModelAdmin):
-    list_display = ("note",)
     search_fields = ("note",)
+    change_list_template = "admin/general/note/change_list.html"
 
     def has_module_permission(self, request):
         self.model._meta.verbose_name_plural = "Notes"

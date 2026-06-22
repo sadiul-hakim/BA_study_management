@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_ckeditor_5',
     'general',
     'book_reading',
     'writing_plan',
@@ -68,6 +69,32 @@ JAZZMIN_SETTINGS = {
         "literature.literaryWork": "fa-solid fa-book",
     },
     "custom_css": "css/admin.css",
+}
+
+CKEDITOR_5_CONFIGS = {
+    "default": {
+        "toolbar": {
+            "items": [
+                "heading",
+                "|",
+                "bold",
+                "italic",
+                "underline",
+                "strikethrough",
+                "|",
+                "link",
+                "bulletedList",
+                "numberedList",
+                "|",
+                "insertTable",
+                "blockQuote",
+                "imageUpload",
+                "|",
+                "undo",
+                "redo",
+            ]
+        }
+    }
 }
 
 MIDDLEWARE = [
