@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'writing_plan',
     'exam_management',
     'literature',
-    'document'
+    'document',
+    'guide'
 ]
 
 JAZZMIN_SETTINGS = {
@@ -120,6 +121,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'guide.context_processors.admin_guide'
             ],
         },
     },
