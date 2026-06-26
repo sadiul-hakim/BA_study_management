@@ -1,5 +1,5 @@
-| No. | Phrasal Verb    | বাংলা অর্থ                  | Example            |
-| --: | --------------- | --------------------------- |
+| No. | Phrasal Verb | বাংলা অর্থ | Example |
+|----:|--------------|------------|---------|
 | 1 | Give up | হাল ছেড়ে দেওয়া | Don't **give up**; you can still succeed. |
 | 2 | Wake up | ঘুম থেকে ওঠা | I **wake up** at 6 a.m. every day. |
 | 3 | Get up | বিছানা থেকে ওঠা | She **gets up** before sunrise. |
