@@ -200,3 +200,12 @@
 | 198 | Wrap up | শেষ করা | Let's **wrap up** today's discussion. |
 | 199 | Write off | বাতিল বলে গণ্য করা | The company **wrote off** the damaged equipment. |
 | 200 | Zero in on | বিশেষভাবে মনোযোগ দেওয়া | The detective **zeroed in on** the main suspect. |
+
+---
+
+| Phrasal Verb | Meaning                       | What are you doing?                           |
+| ------------ | ----------------------------- | --------------------------------------------- |
+| **look for** | Search for something          | You **don't have it yet**.                    |
+| **find out** | Discover or learn information | You **want to know something**.               |
+| **look up**  | Search in a reference source  | You **check a dictionary, Google, map, etc.** |
+
