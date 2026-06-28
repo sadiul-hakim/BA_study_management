@@ -29,7 +29,7 @@ class BookAdmin(admin.ModelAdmin):
 class ReadingProgressAdmin(admin.ModelAdmin):
     list_display = ("book", "chapter", "model", "current_page", "reading_model",
                     "is_completed", "is_postponed", "finish_around")
-    list_filter = ("is_completed",)
+    list_filter = ("book", "is_completed", "is_postponed")
 
 
 @admin.register(OtherStudyProgress)
