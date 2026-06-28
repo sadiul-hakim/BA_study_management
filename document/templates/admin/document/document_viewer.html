@@ -1,0 +1,97 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+
+<h1>Document Viewer</h1>
+
+<form method="get">
+
+    <label>Document</label>
+
+    <select name="document" onchange="this.form.submit()">
+
+        <option value="">---------</option>
+
+        {% for doc in documents %}
+
+        <option
+            value="{{ doc.id }}"
+            {% if selected_document.id == doc.id %}selected{% endif %}
+        >
+            {{ doc.name }}
+        </option>
+
+        {% endfor %}
+
+    </select>
+
+    <br><br>
+
+    {% if selected_document %}
+
+    <label>File</label>
+
+    <select name="file">
+
+        {% for f in selected_document.files.all %}
+
+        <option
+            value="{{ f.id }}"
+            {% if selected_file.id == f.id %}selected{% endif %}
+        >
+            {{ f.file.name }}
+        </option>
+
+        {% endfor %}
+
+    </select>
+    <br/>
+    <button type="submit" class="btn btn-primary">View</button>
+
+    {% endif %}
+
+</form>
+
+<hr>
+<div class="container">
+
+
+{% if selected_file %}
+
+    {% if file_type == "image" %}
+
+        <img
+            src="{{ selected_file.file.url }}"
+            style="max-width:100%;">
+
+    {% elif file_type == "pdf" %}
+
+        <object
+            data="{{ selected_file.file.url }}"
+            type="application/pdf"
+            width="100%"
+            height="900">
+            <p>
+                Your browser cannot display PDFs.
+                <a href="{{ selected_file.file.url }}">Download the PDF</a>.
+            </p>
+        </object>
+
+    {% elif file_type == "markdown" %}
+
+        {{ markdown_html|safe }}
+
+    {% else %}
+
+        <p>Preview not supported.</p>
+
+        <a href="{{ selected_file.file.url }}">
+            Download
+        </a>
+
+    {% endif %}
+
+{% endif %}
+
+{% endblock %}
+</div>

@@ -1,3 +1,5 @@
+from django.urls import path
+from .admin_views import document_viewer
 from django.contrib import admin
 from .models import Document, DocumentFile
 from django.utils.html import format_html
@@ -23,3 +25,25 @@ class DocumentAdmin(admin.ModelAdmin):
     list_display = ("name",)
     search_fields = ("name",)
     inlines = [DocumentFileInline]
+
+# ---- Viewer
+
+
+old_get_urls = admin.site.get_urls
+
+
+def get_urls():
+    urls = old_get_urls()
+
+    custom = [
+        path(
+            "viewer/",
+            admin.site.admin_view(document_viewer),
+            name="document-viewer",
+        ),
+    ]
+
+    return custom + urls
+
+
+admin.site.get_urls = get_urls
