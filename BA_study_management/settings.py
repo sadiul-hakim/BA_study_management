@@ -68,6 +68,7 @@ JAZZMIN_SETTINGS = {
         "literature.author": "fa fa-address-book",
         "literature.genre": "fa fa-navicon",
         "literature.literaryWork": "fa-solid fa-book",
+        "guide.guide": "fa-solid fa-circle-exclamation",
     },
     "custom_css": "css/admin.css",
 }
