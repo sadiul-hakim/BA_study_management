@@ -1,4 +1,5 @@
 {% extends "admin/base_site.html" %}
+{% load static %}
 
 {% block content %}
 
@@ -45,8 +46,8 @@
         {% endfor %}
 
     </select>
-    <br/>
-    <button type="submit" class="btn btn-primary">View</button>
+    
+    <button type="submit" class="btn btn-primary my-2">View</button>
 
     {% endif %}
 
@@ -65,17 +66,11 @@
             style="max-width:100%;">
 
     {% elif file_type == "pdf" %}
-
-        <object
-            data="{{ selected_file.file.url }}"
-            type="application/pdf"
-            width="100%"
-            height="900">
-            <p>
-                Your browser cannot display PDFs.
-                <a href="{{ selected_file.file.url }}">Download the PDF</a>.
-            </p>
-        </object>
+        <a class="btn btn-primary"
+            href="{{ selected_file.file.url }}"
+            target="_blank">
+            Open PDF
+        </a>
 
     {% elif file_type == "markdown" %}
 
@@ -93,5 +88,5 @@
 
 {% endif %}
 
-{% endblock %}
 </div>
+{% endblock %}
