@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'exam_management',
     'literature',
     'document',
-    'guide'
+    'guide',
+    'BookCollection'
 ]
 
 JAZZMIN_SETTINGS = {
