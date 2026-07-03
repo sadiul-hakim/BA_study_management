@@ -47,7 +47,7 @@ class CourseAdmin(admin.ModelAdmin):
 class ReadingPlanAdmin(admin.ModelAdmin):
     list_display = ("course", "book", "chapter",
                     "start_around", "priority", "order", "note")
-    list_filter = ("course", "book")
+    list_filter = ("course", "book", "priority")
     search_fields = ("course__name", "book__title", "note")
 
 
@@ -55,5 +55,5 @@ class ReadingPlanAdmin(admin.ModelAdmin):
 class ReviseAdmin(admin.ModelAdmin):
     list_display = ("book", "chapter", "possible_date",
                     "priority",  "order", "note")
-    list_filter = ("book",)
+    list_filter = ("book", "priority",)
     search_fields = ("book__title", "note")
