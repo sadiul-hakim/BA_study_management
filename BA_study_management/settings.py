@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-1ypb5wucojbf7j6ckqfjvca=z9vcvgv1u23gtilgo@%^rlpr4n
 DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
-
+INTERNAL_IPS = ["127.0.0.1"]
 
 # Application definition
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_ckeditor_5',
+    'debug_toolbar',
     'general',
     'book_reading',
     'writing_plan',
@@ -109,6 +110,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'BA_study_management.urls'
