@@ -53,6 +53,7 @@ INSTALLED_APPS = [
 JAZZMIN_SETTINGS = {
     "show_theme_chooser": True,
     "welcome_sign": "Welcome to Study Management Dashboard",
+    "language_chooser": True,
     "icons": {
         "auth.user": "fas fa-user",
         "book_reading.book": "fas fa-book-open",
@@ -104,6 +105,7 @@ CKEDITOR_5_CONFIGS = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    "django.middleware.locale.LocaleMiddleware",
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -125,7 +127,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'guide.context_processors.admin_guide'
+                'guide.context_processors.admin_guide',
+                "django.template.context_processors.i18n",
             ],
         },
     },
@@ -174,6 +177,13 @@ TIME_ZONE = 'Asia/Dhaka'
 USE_I18N = True
 
 USE_TZ = True
+
+LANGUAGE_CODE = "en"
+
+LANGUAGES = [
+    ("en", "English"),
+    ("bn", "বাংলা"),
+]
 
 
 # Static files (CSS, JavaScript, Images)

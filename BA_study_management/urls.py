@@ -21,13 +21,19 @@ from django.conf import settings
 from django.conf.urls.static import static
 import debug_toolbar
 from django.urls import include, path
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
+    path("i18n/", include("django.conf.urls.i18n")),
+]
+
+urlpatterns += i18n_patterns(
     path('', home, name="home"),
     path('admin/', admin.site.urls),
     path("ckeditor5/", include("django_ckeditor_5.urls")),
     path('__debug__/', include(debug_toolbar.urls)),
-]
+    # prefix_default_language=False,
+)
 
 urlpatterns += static(
     settings.MEDIA_URL,
