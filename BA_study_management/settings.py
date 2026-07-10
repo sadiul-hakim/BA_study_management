@@ -51,7 +51,13 @@ INSTALLED_APPS = [
 ]
 
 JAZZMIN_SETTINGS = {
+    "site_title": "Study Tracker",
+    "site_header": "Study Tracker",
+    "site_brand": "Study Tracker",
+    "welcome_sign": "Welcome to the Dashboard",
     "site_icon": "images/fav.png",
+    "site_logo": "images/logo.png",
+    "login_logo": "images/login_logo.png",
     "show_theme_chooser": True,
     "welcome_sign": "Welcome to Study Management Dashboard",
     "language_chooser": True,
@@ -193,6 +199,9 @@ LANGUAGES = [
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"

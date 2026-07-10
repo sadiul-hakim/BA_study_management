@@ -1,13 +1,6 @@
 from django.contrib import admin
 from .models import Book, Chapter, ReadingProgress, Course, ReadingPlan, Revise, OtherStudyProgress
 
-# Register your models here.
-
-# setting
-admin.site.site_header = "BA Study Tracker"
-admin.site.site_title = "Study Tracker"
-admin.site.index_title = "Dashboard"
-
 # Models
 
 
