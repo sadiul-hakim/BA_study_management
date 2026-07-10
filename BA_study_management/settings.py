@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 ]
 
 JAZZMIN_SETTINGS = {
+    "site_icon": "images/fav.png",
     "show_theme_chooser": True,
     "welcome_sign": "Welcome to Study Management Dashboard",
     "language_chooser": True,
