@@ -1,9 +1,15 @@
 from django.urls import path
 from .admin_views import document_viewer
 from django.contrib import admin
-from .models import Document, DocumentFile
+from .models import Document, DocumentFile, Genre
 from django.utils.html import format_html
 # Register your models here.
+
+
+@admin.register(Genre)
+class GenreAdmin(admin.ModelAdmin):
+    list_display = ("name", )
+    search_fields = ("name", )
 
 
 class DocumentFileInline(admin.TabularInline):
@@ -22,8 +28,9 @@ class DocumentFileInline(admin.TabularInline):
 
 @admin.register(Document)
 class DocumentAdmin(admin.ModelAdmin):
-    list_display = ("name",)
+    list_display = ("name", "genre")
     search_fields = ("name",)
+    list_filter = ("genre",)
     inlines = [DocumentFileInline]
 
 # ---- Viewer
