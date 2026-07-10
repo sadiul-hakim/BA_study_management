@@ -64,6 +64,7 @@ JAZZMIN_SETTINGS = {
         "book_reading.readingPlan": "fa fa-fire",
         "book_reading.revise": "fa fa-exchange",
         "document.document": "fa fa-clone",
+        "document.genre": "fa fa-navicon",
         "exam_management.exam": "fa fa-puzzle-piece",
         "exam_management.improve": "fa-solid fa-arrow-up-right-dots",
         "general.notes": "fa fa-sticky-note",
@@ -195,3 +196,6 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+#
+X_FRAME_OPTIONS = "SAMEORIGIN"
