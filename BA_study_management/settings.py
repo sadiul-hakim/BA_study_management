@@ -71,6 +71,7 @@ JAZZMIN_SETTINGS = {
         "book_reading.revise": "fa fa-exchange",
         "document.document": "fa fa-clone",
         "document.genre": "fa fa-navicon",
+        "document.link": "fa fa-external-link-square",
         "exam_management.exam": "fa fa-puzzle-piece",
         "exam_management.improve": "fa-solid fa-arrow-up-right-dots",
         "general.notes": "fa fa-sticky-note",

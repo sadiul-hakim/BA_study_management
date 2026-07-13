@@ -37,3 +37,11 @@ class DocumentFile(models.Model):
 
     def __str__(self):
         return self.file.name
+
+
+class Link(models.Model):
+    name = models.CharField()
+    link = models.CharField()
+
+    def __str__(self):
+        return self.name

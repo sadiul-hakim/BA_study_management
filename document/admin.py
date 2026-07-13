@@ -1,9 +1,15 @@
 from django.urls import path
 from .admin_views import document_viewer
 from django.contrib import admin
-from .models import Document, DocumentFile, Genre
+from .models import Document, DocumentFile, Genre, Link
 from django.utils.html import format_html
 # Register your models here.
+
+
+@admin.register(Link)
+class LinkAdmin(admin.ModelAdmin):
+    list_display = ("name", "link")
+    search_fields = ("name", )
 
 
 @admin.register(Genre)
