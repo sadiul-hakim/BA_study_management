@@ -7,6 +7,30 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 from .models import Document, DocumentFile
 
+"""
+Logging:
+-------
+import logging
+
+logger = logging.getLogger(__name__)
+
+logger.info("Application started")
+
+logger.info(
+    "User '%s' viewed document '%s'",
+    request.user.username,
+    selected_document.name,
+)
+
+logger.warning("Unsupported file type: %s", ext)
+
+try:
+    ...
+except Exception:
+    logger.exception("Failed to render markdown")
+
+"""
+
 
 @staff_member_required
 def document_viewer(request):
