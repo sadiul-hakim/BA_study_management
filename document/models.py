@@ -42,6 +42,12 @@ class DocumentFile(models.Model):
 class Link(models.Model):
     name = models.CharField()
     link = models.CharField()
+    genre = models.ForeignKey(
+        Genre,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True
+    )
 
     def __str__(self):
         return self.name

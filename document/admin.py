@@ -8,8 +8,9 @@ from django.utils.html import format_html
 
 @admin.register(Link)
 class LinkAdmin(admin.ModelAdmin):
-    list_display = ("name", "link")
+    list_display = ("name", "genre", "link")
     search_fields = ("name", )
+    list_filter = ("genre", )
 
 
 @admin.register(Genre)
