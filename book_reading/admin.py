@@ -20,14 +20,15 @@ class BookAdmin(admin.ModelAdmin):
 
 @admin.register(ReadingProgress)
 class ReadingProgressAdmin(admin.ModelAdmin):
-    list_display = ("book", "chapter", "model", "current_page", "reading_model",
-                    "is_completed", "is_postponed", "finish_around")
-    list_filter = ("book", "is_completed", "is_postponed")
+    list_display = ("book", "chapter", "model", "current_page",
+                    "reading_model", "status", "finish_around")
+    list_filter = ("book", "status")
 
 
 @admin.register(OtherStudyProgress)
 class OtherStudyProgressAdmin(admin.ModelAdmin):
-    list_display = ("topic_name", "note")
+    list_display = ("topic_name", "status", "note")
+    list_filter = ("status",)
     search_fields = ("topic_name",)
 
 

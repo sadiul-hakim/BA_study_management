@@ -45,13 +45,24 @@ class Chapter(models.Model):
 
 
 class ReadingProgress(models.Model):
+    NOT_STARTED = 1
+    IN_PROGRESS = 2
+    POSTPONED = 3
+    COMPLETED = 4
+
+    PRIORITY_CHOICES = [
+        (NOT_STARTED, "Not Started"),
+        (IN_PROGRESS, "In Progress"),
+        (POSTPONED, "Postponed"),
+        (COMPLETED, "Completed"),
+    ]
+
     chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, null=True,
                                 blank=True)
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     current_page = models.IntegerField(default=0)
     model = models.CharField(max_length=100, default=0)
-    is_completed = models.BooleanField(default=False)
-    is_postponed = models.BooleanField(default=False)
+    status = models.IntegerField(choices=PRIORITY_CHOICES, default=NOT_STARTED)
     reading_model = models.BooleanField(default=False)
 
     updated_at = models.DateTimeField(auto_now=True)
@@ -62,8 +73,21 @@ class ReadingProgress(models.Model):
 
 
 class OtherStudyProgress(models.Model):
+    NOT_STARTED = 1
+    IN_PROGRESS = 2
+    POSTPONED = 3
+    COMPLETED = 4
+
+    PRIORITY_CHOICES = [
+        (NOT_STARTED, "Not Started"),
+        (IN_PROGRESS, "In Progress"),
+        (POSTPONED, "Postponed"),
+        (COMPLETED, "Completed"),
+    ]
+
     topic_name = models.CharField(max_length=200, null=False, blank=False)
     note = models.TextField()
+    status = models.IntegerField(choices=PRIORITY_CHOICES, default=NOT_STARTED)
 
     def __str__(self):
         return f"{self.topic_name}"
