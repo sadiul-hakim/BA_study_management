@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_ckeditor_5',
     'debug_toolbar',
+    'silk',
     'general',
     'book_reading',
     'writing_plan',
@@ -124,6 +125,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'silk.middleware.SilkyMiddleware',
 ]
 
 ROOT_URLCONF = 'BA_study_management.urls'
@@ -140,6 +142,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'guide.context_processors.admin_guide',
                 "django.template.context_processors.i18n",
+                'django.template.context_processors.request',
             ],
         },
     },
