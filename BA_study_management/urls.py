@@ -13,8 +13,10 @@ urlpatterns = [
 
 urlpatterns += i18n_patterns(
     path('', home, name="home"),
-    path('admin/', admin.site.urls),
+
     path("ckeditor5/", include("django_ckeditor_5.urls")),
+    path('admin/', admin.site.urls),
+
 
     # silk
     path('silk/', include('silk.urls', namespace='silk')),
