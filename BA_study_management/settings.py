@@ -277,3 +277,9 @@ def silky_permissions(user):
 
 
 SILKY_PERMISSIONS = silky_permissions
+
+# Add these to your project's settings.py (anywhere near the bottom is fine)
+
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'routines:today'
+LOGOUT_REDIRECT_URL = 'login'

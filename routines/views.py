@@ -1,6 +1,8 @@
-from datetime import timedelta
+from datetime import timedelta, datetime
 
+from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.http import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.utils import timezone
@@ -8,12 +10,25 @@ from django.utils import timezone
 from .models import Habit, HabitLog
 
 
-def today_view(request):
+def _parse_date(date_str):
+    try:
+        return datetime.strptime(date_str, '%Y-%m-%d').date()
+    except (ValueError, TypeError):
+        raise Http404("Invalid date")
+
+
+@login_required
+def day_view(request, date_str=None):
     today = timezone.localdate()
+    target_date = _parse_date(date_str) if date_str else today
+
+    if target_date > today:
+        target_date = today
+
     habits = Habit.objects.filter(is_active=True)
 
     completed_ids = set(
-        HabitLog.objects.filter(date=today, completed=True).values_list(
+        HabitLog.objects.filter(date=target_date, completed=True).values_list(
             'habit_id', flat=True)
     )
 
@@ -25,7 +40,11 @@ def today_view(request):
 
     context = {
         'habit_data': habit_data,
+        'target_date': target_date,
         'today': today,
+        'is_today': target_date == today,
+        'prev_date': target_date - timedelta(days=1),
+        'next_date': target_date + timedelta(days=1) if target_date < today else None,
         'completed_count': completed_count,
         'total': total,
         'percent': percent,
@@ -33,21 +52,29 @@ def today_view(request):
     return render(request, 'routines/today.html', context)
 
 
+@login_required
 @require_POST
-def toggle_habit(request, habit_id):
+def toggle_habit(request, habit_id, date_str):
     habit = get_object_or_404(Habit, id=habit_id)
+    target_date = _parse_date(date_str)
     today = timezone.localdate()
 
+    if target_date > today:
+        return redirect('routines:today')
+
     log, created = HabitLog.objects.get_or_create(
-        habit=habit, date=today, defaults={'completed': True}
+        habit=habit, date=target_date, defaults={'completed': True}
     )
     if not created:
         log.completed = not log.completed
         log.save()
 
-    return redirect('routines:today')
+    if target_date == today:
+        return redirect('routines:today')
+    return redirect('routines:day', date_str=date_str)
 
 
+@login_required
 def stats_view(request):
     period = request.GET.get('period', 'week')
     days = 30 if period == 'month' else 7
@@ -56,10 +83,6 @@ def stats_view(request):
     start_date = today - timedelta(days=days - 1)
     date_list = [start_date + timedelta(days=i) for i in range(days)]
 
-    # Include any habit that's currently active, OR was archived/removed
-    # partway through this window, OR has log entries in this window.
-    # This way newly added and recently-archived habits both show up
-    # correctly instead of either vanishing or showing false "missed" days.
     habits = Habit.objects.filter(
         Q(is_active=True)
         | Q(archived_at__date__gte=start_date)
@@ -73,19 +96,14 @@ def stats_view(request):
     habit_stats = []
     total_possible = 0
     total_completed = 0
-
-    # Track, per date, which habits were actually "active" that day —
-    # used to build the grid without penalizing habits for days they
-    # didn't exist yet or were already archived.
     active_on = {h.id: set() for h in habits}
 
     for h in habits:
-        habit_start = max(start_date, h.created_at.date())
+        habit_start = start_date
         habit_end = today if not h.archived_at else min(
             today, h.archived_at.date())
 
         if habit_end < habit_start:
-            # Habit's entire lifespan falls outside this window
             habit_stats.append({
                 'habit': h, 'completed': 0, 'missed': 0, 'percent': None, 'tracked_days': 0,
             })
@@ -122,7 +140,7 @@ def stats_view(request):
         row = {'date': d, 'is_today': d == today, 'cells': []}
         for h in habits:
             if d not in active_on[h.id]:
-                row['cells'].append('na')  # habit didn't exist / was archived
+                row['cells'].append('na')
             elif (h.id, d) in log_set:
                 row['cells'].append('on')
             else:
@@ -145,6 +163,7 @@ def stats_view(request):
     return render(request, 'routines/stats.html', context)
 
 
+@login_required
 def manage_habits(request):
     active_habits = Habit.objects.filter(
         is_active=True).order_by('order', 'name')
@@ -156,11 +175,10 @@ def manage_habits(request):
     })
 
 
+@login_required
 def delete_habit(request, habit_id):
     habit = get_object_or_404(Habit, id=habit_id)
 
-    # Safety rail: only archived habits can be deleted from here.
-    # Active habits must be deactivated first (via admin) before removal.
     if habit.is_active:
         return redirect('routines:manage')
 
@@ -171,7 +189,6 @@ def delete_habit(request, habit_id):
         if confirm_name == habit.name:
             habit.delete()
             return redirect('routines:manage')
-        # name didn't match — fall through and re-show the confirm page with an error
         return render(request, 'routines/delete_confirm.html', {
             'habit': habit, 'log_count': log_count, 'error': True,
         })
