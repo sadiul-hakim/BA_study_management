@@ -4,9 +4,11 @@ from .models import Habit, HabitLog
 
 @admin.register(Habit)
 class HabitAdmin(admin.ModelAdmin):
-    list_display = ('name', 'icon', 'order', 'is_active', 'created_at')
+    list_display = ('name', 'icon', 'order', 'is_active',
+                    'created_at', 'archived_at')
     list_editable = ('order', 'is_active')
     search_fields = ('name',)
+    readonly_fields = ('archived_at',)
 
 
 @admin.register(HabitLog)

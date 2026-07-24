@@ -178,11 +178,19 @@
       width: 16px;
       height: 16px;
       border-radius: 4px;
+    }
+
+    .dot-off {
       background: #ece5d8;
     }
 
-    .dot.on {
+    .dot-on {
       background: #4a5d4f;
+    }
+
+    .dot-na {
+      background: transparent;
+      border: 1px dashed #ddd3c0;
     }
 
     .buttons {
@@ -254,10 +262,16 @@
           <div class="habit-row">
             <div class="habit-row-top">
               <span class="name">{% if stat.habit.icon %}{{ stat.habit.icon }} {% endif %}{{ stat.habit.name }}</span>
-              <span class="meta">{{ stat.completed }} done &middot; {{ stat.missed }} missed &middot; {{ stat.percent }}%</span>
+              <span class="meta">
+                {% if stat.percent is not None %}
+                  {{ stat.completed }} done &middot; {{ stat.missed }} missed &middot; {{ stat.percent }}%
+                {% else %}
+                  no data in this range
+                {% endif %}
+              </span>
             </div>
             <div class="bar-bg">
-              <div class="bar-fill" style="width: {{ stat.percent }}%;"></div>
+              <div class="bar-fill" style="width: {{ stat.percent|default:0 }}%;"></div>
             </div>
           </div>
         {% endfor %}
@@ -278,8 +292,8 @@
             {% for row in grid %}
               <tr class="{% if row.is_today %}today-row{% endif %}">
                 <td class="date-cell">{{ row.date|date:"M j" }}</td>
-                {% for done in row.cells %}
-                  <td><span class="dot {% if done %}on{% endif %}"></span></td>
+                {% for cell in row.cells %}
+                  <td><span class="dot dot-{{ cell }}"></span></td>
                 {% endfor %}
               </tr>
             {% endfor %}
@@ -292,6 +306,7 @@
 
     <div class="buttons">
       <a href="{% url 'routines:today' %}" class="btn primary">Back to Today</a>
+      <a href="{% url 'routines:manage' %}" class="btn secondary">Manage Habits</a>
       <a href="/" class="btn secondary">Home</a>
     </div>
   </div>
