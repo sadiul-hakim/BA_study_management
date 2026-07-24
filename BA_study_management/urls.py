@@ -20,6 +20,9 @@ urlpatterns += i18n_patterns(
 
     # silk
     path('silk/', include('silk.urls', namespace='silk')),
+
+    # app
+    path('routines/', include('routines.urls')),
 )
 
 urlpatterns += static(

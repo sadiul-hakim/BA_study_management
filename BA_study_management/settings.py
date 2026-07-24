@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'literature',
     'document',
     'guide',
-    'BookCollection'
+    'BookCollection',
+    'routines'
 ]
 
 JAZZMIN_SETTINGS = {
